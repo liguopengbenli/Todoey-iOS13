@@ -1,16 +1,10 @@
-//
-//  ViewController.swift
-//  Todoey
-//
-//  Created by Philipp Muellauer on 02/12/2019.
-//  Copyright © 2019 App Brewery. All rights reserved.
-//
+
 
 import UIKit
 
 class TodoListViewController: UITableViewController {
-
-    let itemArray = ["Find Mike", "Buy eggos", "Destory demo"]
+    
+    var itemArray = ["Find Mike", "Buy eggos", "Destory demo"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,5 +31,35 @@ class TodoListViewController: UITableViewController {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem){
+        var textFiled = UITextField()
+        let alert = UIAlertController(title: "Add new todo item", message: "", preferredStyle: .alert)
+        alert.addTextField{(alertTextField) in
+            alertTextField.placeholder = "create new item"
+            textFiled = alertTextField
+        }
+        let action = UIAlertAction(title: "Add item", style: .default){
+            (action) in
+            self.itemArray.append(textFiled.text!)
+            self.tableView.reloadData()
+            
+        }
+       
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+
+
 
